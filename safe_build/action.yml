@@ -22,7 +22,7 @@ runs:
       run: ./configure
       continue-on-error: true
     - name: get configure_status
-      uses: LanguageMachines/ticcactions/get_status@v1
+      uses: LanguageMachines/ticcactions/get_status@v1.0
       with:
         the-step: configure
         outcome: ${{ steps.configure.outcome }}
@@ -39,7 +39,7 @@ runs:
       run: make
       continue-on-error: true
     - name: get make_status
-      uses: LanguageMachines/ticcactions/get_status@v1
+      uses: LanguageMachines/ticcactions/get_status@v1.0
       with:
         the-step: make
         outcome: ${{ steps.make.outcome }}
@@ -52,7 +52,7 @@ runs:
       run: sudo make install
       continue-on-error: true
     - name: get install_status
-      uses: LanguageMachines/ticcactions/get_status@v1
+      uses: LanguageMachines/ticcactions/get_status@v1.0
       with:
         the-step: install
         outcome: ${{ steps.install.outcome }}
@@ -66,7 +66,7 @@ runs:
       run: make check
       continue-on-error: true
     - name: get check_status
-      uses: LanguageMachines/ticcactions/get_status@v1
+      uses: LanguageMachines/ticcactions/get_status@v1.0
       with:
         the-step: check
         outcome: ${{ steps.check.outcome }}
