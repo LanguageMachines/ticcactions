@@ -13,7 +13,6 @@ inputs:
   nickname:
     description: the nickname
     required: true
-    default: GH-${{ runner.os }}-${{ env.cid }}
   module:
     description: 'name of the tool'
   branch:
@@ -31,8 +30,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name:
-      shell: bash
+    - name: Notify IRC of failure
       if: ${{ inputs.status != 'success' }}
       uses: Gottox/irc-message-action@v2
       with:
