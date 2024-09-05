@@ -1,0 +1,50 @@
+name: 'IRC Status'
+description: 'signal status message to IRC'
+
+inputs:
+  server:
+    description: 'the IRC server'
+    default: irc.uvt.nl
+    required: true
+  channel:
+    description: 'the channel name'
+    required: true
+    default: '#gitlama'
+  nickname:
+    description: the nickname
+    required: true
+    default: GH-${{ runner.os }}-${{ env.cid }}
+  module:
+    description: 'name of the tool'
+  branch:
+    description: 'branch name'
+    default: 'master'
+  compiler:
+    description: 'the compiler'
+  os:
+    description: 'the Operating System'
+  status:
+    description: 'success or not?'
+    required: true
+    default: ${{ env.action_status }}
+
+runs:
+  using: "composite"
+  steps:
+    - name:
+      shell: bash
+      if: ${{ inputs.status != 'success' }}
+      uses: Gottox/irc-message-action@v2
+      with:
+        server: ${{ inputs.server }}
+        channel: ${{ inputs.channel }}
+        nickname: ${{ inputs.nickname }}
+        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ inputs.compiler }} by ${{ github.actor }} on ${{ inputs.os }}: \u00034FAILED\u0003 in step ${{ inputs.status }}"
+    - name: Notify IRC of succes
+      if: ${{ env.action_status == '' }}
+      uses: Gottox/irc-message-action@v2
+      with:
+        server: ${{ inputs.server }}
+        channel: ${{ inputs.channel }}
+        nickname: ${{ inputs.nickname }}
+        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ inputs.compiler }} by ${{ github.actor }} on ${{ inputs.os }}: \u00033SUCCESS\u0003"
