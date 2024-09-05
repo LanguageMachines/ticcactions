@@ -29,6 +29,9 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: show val
+      shell: bash
+      run: echo "status=${{env.action_status}}
     - name: Notify IRC of failure
       if: ${{ inputs.status != '' }}
       uses: Gottox/irc-message-action@v2
