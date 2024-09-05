@@ -38,7 +38,7 @@ runs:
         nickname: ${{ inputs.nickname }}
         message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ inputs.compiler }} by ${{ github.actor }} on ${{ inputs.os }}: \u00034FAILED\u0003 in step ${{ inputs.status }}"
     - name: Notify IRC of succes
-      if: ${{ inputs_status == '' }}
+      if: ${{ inputs.status == '' }}
       uses: Gottox/irc-message-action@v2
       with:
         server: ${{ inputs.server }}
