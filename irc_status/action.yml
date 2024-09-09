@@ -1,6 +1,9 @@
 name: 'IRC Status'
 description: 'signal status message to IRC'
 
+env:
+  ACTIONS_STEP_DEBUG: true
+
 inputs:
   server:
     description: 'the IRC server'
@@ -32,6 +35,7 @@ runs:
     - name: show val
       shell: bash
       run: echo "status=${{inputs.status}}"
+
     - name: Notify IRC of skipped case
       if: ${{ inputs.status == 'skip' }}
       uses: Gottox/irc-message-action@v2
