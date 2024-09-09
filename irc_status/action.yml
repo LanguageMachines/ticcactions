@@ -32,8 +32,16 @@ runs:
     - name: show val
       shell: bash
       run: echo "status=${{env.action_status}}"
+    - name: Notify IRC of skipped case
+      if: ${{ inputs.status == 'skip' }}
+      uses: Gottox/irc-message-action@v2
+      with:
+        server: ${{ inputs.server }}
+        channel: ${{ inputs.channel }}
+        nickname: ${{ inputs.nickname }}
+        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ inputs.compiler }} by ${{ github.actor }} on ${{ inputs.os }}: \u00035SKIPPED\u0003"
     - name: Notify IRC of failure
-      if: ${{ inputs.status != '' }}
+      if: ${{ inputs.status != '' && inputs.status != 'skip' }}
       uses: Gottox/irc-message-action@v2
       with:
         server: ${{ inputs.server }}
