@@ -12,11 +12,13 @@ runs:
   steps:
     - name: bootstrap
       shell: bash
+      if: ${{ env.action_status == '' }}
       run: sh bootstrap.sh
 
     - name: configure
       id: configure
       shell: bash
+      if: ${{ env.action_status == '' }}
       env:
         CXX: ${{ inputs.compiler }}
       run: ./configure
