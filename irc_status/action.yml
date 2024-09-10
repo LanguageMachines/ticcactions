@@ -23,7 +23,7 @@ inputs:
   os:
     description: 'the Operating System'
   status:
-    description: 'success or not?'
+    description: 'whats the status?'
     required: true
 
 runs:
