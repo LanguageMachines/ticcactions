@@ -43,7 +43,7 @@ runs:
         server: ${{ inputs.server }}
         channel: ${{ inputs.channel }}
         nickname: ${{ inputs.nickname }}
-        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ inputs.compiler }} by ${{ github.actor }} on ${{ matrix.os }}: \u00035SKIPPED\u0003 ${{ inputs.details }}"
+        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ matrix.compiler }} by ${{ github.actor }} on ${{ matrix.os }}: \u00035SKIPPED\u0003 ${{ inputs.details }}"
 
     - name: Notify IRC of failure
       if: ${{ inputs.status != '' && inputs.status != 'skip' }}
@@ -52,7 +52,7 @@ runs:
         server: ${{ inputs.server }}
         channel: ${{ inputs.channel }}
         nickname: ${{ inputs.nickname }}
-        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ inputs.compiler }} by ${{ github.actor }} on ${{ matrix.os }}: \u00034FAILED\u0003 in step ${{ inputs.status }} ${{ inputs.details }}"
+        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ matrx.compiler }} by ${{ github.actor }} on ${{ matrix.os }}: \u00034FAILED\u0003 in step ${{ inputs.status }} ${{ inputs.details }}"
 
     - name: Notify IRC of succes
       if: ${{ inputs.status == '' }}
@@ -61,4 +61,4 @@ runs:
         server: ${{ inputs.server }}
         channel: ${{ inputs.channel }}
         nickname: ${{ inputs.nickname }}
-        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ inputs.compiler }} by ${{ github.actor }} on ${{ matrix.os }}: \u00033SUCCESS\u0003 ${{ inputs.details }}"
+        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ matrix.compiler }} by ${{ github.actor }} on ${{ matrix.os }}: \u00033SUCCESS\u0003 ${{ inputs.details }}"

@@ -1,12 +1,6 @@
 name: 'Build Package'
 description: 'build a package'
 
-inputs:
-  compiler:
-    description: 'which compiler'
-    required: true
-    default: gcc-12
-
 runs:
   using: "composite"
   steps:
@@ -20,7 +14,7 @@ runs:
       shell: bash
       if: ${{ env.action_status == '' }}
       env:
-        CXX: ${{ inputs.compiler }}
+        CXX: ${{ matrix.compiler }}
       run: ./configure
       continue-on-error: true
     - name: get configure_status
@@ -37,7 +31,7 @@ runs:
       shell: bash
       if: ${{ env.action_status == '' }}
       env:
-        CXX: ${{ inputs.compiler }}
+        CXX: ${{ matrix.compiler }}
       run: make
       continue-on-error: true
     - name: get make_status
@@ -50,7 +44,7 @@ runs:
       shell: bash
       if: ${{ env.action_status == '' }}
       env:
-        CXX: ${{ inputs.compiler }}
+        CXX: ${{ matrix.compiler }}
       run: sudo make install
       continue-on-error: true
     - name: get install_status
@@ -63,7 +57,7 @@ runs:
       shell: bash
       if: ${{ env.action_status == '' }}
       env:
-        CXX: ${{ inputs.compiler }}
+        CXX: ${{ matrix.compiler }}
         LD_LIBRARY_PATH: $LD_LIBRARY_PATH:/usr/local/lib
       run: make check
       continue-on-error: true
