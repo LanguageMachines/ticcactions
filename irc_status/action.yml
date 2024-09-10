@@ -52,7 +52,7 @@ runs:
         server: ${{ inputs.server }}
         channel: ${{ inputs.channel }}
         nickname: ${{ inputs.nickname }}
-        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ matrx.compiler }} by ${{ github.actor }} on ${{ matrix.os }}: \u00034FAILED\u0003 in step ${{ inputs.status }} ${{ inputs.details }}"
+        message: "${{ inputs.module }} [${{ inputs.branch }}] build with ${{ matrix.compiler }} by ${{ github.actor }} on ${{ matrix.os }}: \u00034FAILED\u0003 in step ${{ inputs.status }} ${{ inputs.details }}"
 
     - name: Notify IRC of succes
       if: ${{ inputs.status == '' }}
