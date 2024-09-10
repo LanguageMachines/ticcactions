@@ -4,15 +4,16 @@ description: 'Install common dependencies for all our tools'
 runs:
   using: "composite"
   steps:
-    shell: bash
-    if: ${{ env.action_status != 'skip' }}
-    run: |
-       if [ "$RUNNER_OS" == "Linux" ]; then
-         sudo apt-get install libicu-dev libxml2-dev libbz2-dev;
-         sudo apt-get install zlib1g-dev
-       else
-         brew install libxml2
-         brew reinstall icu4c
-         brew install bzip2
-         brew install zlib
-       fi
+    - name: install dependencies
+      shell: bash
+      if: ${{ env.action_status != 'skip' }}
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          sudo apt-get install libicu-dev libxml2-dev libbz2-dev;
+          sudo apt-get install zlib1g-dev
+        else
+          brew install libxml2
+          brew reinstall icu4c
+          brew install bzip2
+          brew install zlib
+        fi
