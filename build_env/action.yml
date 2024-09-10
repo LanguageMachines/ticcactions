@@ -10,8 +10,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: setup-linux
+    - name: setup tools
       shell: bash
+      if: ${{ env.action_status != 'skip' }}
       run: |
            if [ "$RUNNER_OS" == "Linux" ]; then
               sudo apt-get install pkgconf autoconf-archive
