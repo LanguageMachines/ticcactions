@@ -1,9 +1,6 @@
 name: 'IRC Status'
 description: 'signal status message to IRC'
 
-env:
-  ACTIONS_STEP_DEBUG: true
-
 inputs:
   server:
     description: 'the IRC server'
