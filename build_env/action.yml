@@ -1,0 +1,24 @@
+name: 'Build Environment'
+description: 'Setup a build environment for Autotools etc.'
+
+inputs:
+  os:
+    description: 'which os'
+    required: true
+    default: 'Linux'
+
+runs:
+  using: "composite"
+  steps:
+    - name: setup-linux
+      shell: bash
+      run: |
+           if [ "$RUNNER_OS" == "Linux" ]; then
+              sudo apt-get install pkgconf autoconf-archive
+           else
+              brew upgrade
+              brew install libtool
+              brew install autoconf
+              brew install autoconf-archive
+              brew install automake
+           fi
