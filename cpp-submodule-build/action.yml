@@ -29,4 +29,4 @@ runs:
       uses: LanguageMachines/ticcactions/get-status@v1
       with:
         the-step: ${{inputs.module}}
-        outcome: steps.${{inputs.module}}.outcome }}
+        outcome: steps.install.outcome
