@@ -1,6 +1,6 @@
 ---
-name: 'Get Status'
-description: 'sets the action_status environment var'
+name: 'Build a submodule'
+description: 'Build and install a submodule'
 
 inputs:
   module:
