@@ -5,6 +5,7 @@ description: 'send startup notification to IRC'
 inputs:
   module:
     description: who are we
+    default: ${{ github.event.repository.name }}
     required: true
 
 runs:
