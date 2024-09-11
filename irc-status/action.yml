@@ -16,6 +16,7 @@ inputs:
     required: true
   module:
     description: 'name of the tool'
+    default: ${{ github.event.repository.name }}
   step:
     default: build
     description: 'which step sends the message'

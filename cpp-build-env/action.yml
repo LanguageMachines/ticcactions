@@ -15,7 +15,8 @@ runs:
       shell: bash
       if: ${{ env.action_status != 'skip' }}
       run: |
-           if [ "$RUNNER_OS" == "Linux" ]; then
+           if [ "$RUNNER_OS" == "Linux" ]
+           then
               sudo apt-get install pkgconf autoconf-archive
            else
               brew upgrade

@@ -33,7 +33,7 @@ runs:
       if: ${{ env.action_status == '' }}
       env:
         CXX: ${{ matrix.compiler }}
-      run: make
+      run: make -j4
       continue-on-error: true
     - name: get make_status
       uses: LanguageMachines/ticcactions/get-status@v1

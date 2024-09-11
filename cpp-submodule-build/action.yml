@@ -17,13 +17,13 @@ runs:
       env:
         CXX: ${{ matrix.compiler }}
       run: |
-        git clone https://github.com/LanguageMachines/${{inputs.module}};
-        cd ${{inputs.module}};
-        bash bootstrap.sh;
-        ./configure;
-        make;
-        sudo make install;
-        cd ..;
+        git clone https://github.com/LanguageMachines/${{inputs.module}}
+        cd ${{inputs.module}}
+        bash bootstrap.sh
+        ./configure
+        make -j4
+        sudo make install
+        cd ..
       continue-on-error: true
     - name: get status
       uses: LanguageMachines/ticcactions/get-status@v1
