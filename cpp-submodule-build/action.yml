@@ -1,0 +1,32 @@
+---
+name: 'Get Status'
+description: 'sets the action_status environment var'
+
+inputs:
+  module:
+    description: 'which package to build'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: install
+      id: install
+      shell: bash
+      if: ${{ env.action_status == '' }}
+      env:
+        CXX: ${{ matrix.compiler }}
+      run: |
+        git clone https://github.com/LanguageMachines/${{inputs.module}};
+        cd ${{inputs.module}};
+        bash bootstrap.sh;
+        ./configure;
+        make;
+        sudo make install;
+        cd ..;
+      continue-on-error: true
+    - name: get status
+      uses: LanguageMachines/ticcactions/get-status@v1
+      with:
+        the-step: ${{inputs.module}}
+        outcome: steps.${{inputs.module}}.outcome }}
