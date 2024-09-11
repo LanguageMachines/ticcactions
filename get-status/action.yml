@@ -1,3 +1,4 @@
+---
 name: 'Get Status'
 description: 'sets the action_status environment var'
 

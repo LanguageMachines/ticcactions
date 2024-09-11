@@ -1,3 +1,4 @@
+---
 name: 'signal start or run to irc'
 description: 'send startup notification to IRC'
 
