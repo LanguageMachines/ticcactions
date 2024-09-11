@@ -1,0 +1,16 @@
+name: 'compose irc nickname'
+description: 'compose a somewaht unique nickname'
+
+runs:
+  using: "composite"
+  steps:
+    - name: nick
+      shell: bash
+      run: |
+        cid=$(echo ${{matrix.compiler}} | cut -d\+ -f1)
+        if [ "$cid" == "g" ]
+        then
+          cid=$cid"cc"
+        fi
+        echo "cid=$cid" >> $GITHUB_ENV
+        echo "nick=GH-${{runner.os}}-$cid" >> $GITHUB_ENV
