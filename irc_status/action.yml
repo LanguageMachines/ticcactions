@@ -18,10 +18,6 @@ inputs:
   branch:
     description: 'branch name'
     default: 'master'
-  compiler:
-    description: 'the compiler'
-  os:
-    description: 'the Operating System'
   status:
     description: 'whats the status?'
     required: true
