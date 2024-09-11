@@ -5,6 +5,7 @@ runs:
   using: "composite"
   steps:
     - name: doit
+      shell: bash
       if: ${{ env.action_status == '' }}
       run: |
            if [ "$RUNNER_OS" == "Linux" ]; then
