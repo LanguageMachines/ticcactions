@@ -1,0 +1,21 @@
+name: 'signal start or run to irc'
+description: 'send startup notification to IRC'
+
+inputs:
+  module:
+    description: who are we
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: IRC notification of starting the builds
+      uses: Gottox/irc-message-action@v2
+      with:
+        server: irc.uvt.nl
+        channel: '#gitlama'
+        nickname: GitHub
+        message: >
+          ${{ github.actor }} started a build of {{ inputs.module }}
+          [${{ github.ref_name }}]
+          "${{ github.event.head_commit.message }}"
