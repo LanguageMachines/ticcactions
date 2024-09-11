@@ -16,6 +16,6 @@ runs:
         channel: '#gitlama'
         nickname: GitHub
         message: >
-          ${{ github.actor }} started a build of {{ inputs.module }}
+          ${{ github.actor }} started a build of ${{ inputs.module }}
           [${{ github.ref_name }}]
           "${{ github.event.head_commit.message }}"
