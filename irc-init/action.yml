@@ -11,6 +11,12 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: shortmessage
+      id: sm
+      run: |
+        sm=$(echo ${{github.event.head_commit.message }} | cut -c 1-40 )
+        echo "sm=$sm" >> $GITHUB_OUTPUT
+
     - name: IRC notification of starting the builds
       uses: Gottox/irc-message-action@v2
       with:
@@ -20,4 +26,4 @@ runs:
         message: >
           ${{ github.actor }} started a build of ${{ inputs.module }}
           [${{ github.ref_name }}]
-          "${{ github.event.head_commit.message }}"
+          "${{ steps.sm.outputs.sm }}"
