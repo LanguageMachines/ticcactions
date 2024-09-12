@@ -13,6 +13,7 @@ runs:
   steps:
     - name: shortmessage
       id: sm
+      shell: bash
       run: |
         sm=$(echo ${{github.event.head_commit.message }} | cut -c 1-40 )
         echo "sm=$sm" >> $GITHUB_OUTPUT
