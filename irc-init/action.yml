@@ -15,7 +15,7 @@ runs:
       id: sm
       shell: bash
       run: |
-        sm=$(echo ${{github.event.head_commit.message }} | cut -c 1-40 )
+        sm=$(echo "${{github.event.head_commit.message }}" | cut -c 1-40 )
         echo "sm=$sm" >> $GITHUB_OUTPUT
 
     - name: IRC notification of starting the builds
