@@ -1,0 +1,24 @@
+---
+name: 'Add ICU dependency'
+description: 'Add ICU package on Linux, or install from scratch on Mac'
+
+runs:
+  using: "composite"
+  steps:
+    - name: doit
+      shell: bash
+      if: ${{ env.action_status == '' }}
+      env:
+        CXX: ${{ matrix.compiler }}
+      run: |
+        if [ "$RUNNER_OS" != "Linux" ]; then
+          git clone https://github.com/unicode-org/icu.git
+          cd icu/source
+          chmod +x runConfigureICU configure install-sh
+          ./runConfigureICU
+          make && make check
+          sudo make install
+          cd ../..
+        else
+          sudo apt-get install libicu-dev
+        fi
