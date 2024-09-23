@@ -13,7 +13,8 @@ runs:
       run: |
         if [ "$RUNNER_OS" != "Linux" ]; then
           git clone https://github.com/unicode-org/icu.git
-          cd icu/source
+          ls icu
+          cd icu
           chmod +x runConfigureICU configure install-sh
           ./runConfigureICU
           make && make check
