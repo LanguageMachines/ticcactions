@@ -14,8 +14,8 @@ runs:
         if [ "$RUNNER_OS" != "Linux" ]; then
           # brew uninstall icu4c
           git clone https://github.com/unicode-org/icu.git
-          ls icu
-          cd icu
+          ls icu/icu4c
+          cd icu/icu4c
           chmod +x runConfigureICU configure install-sh
           ./runConfigureICU
           make && make check
