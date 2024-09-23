@@ -17,7 +17,7 @@ runs:
           ls icu/icu4c/source
           cd icu/icu4c/source
           chmod +x runConfigureICU configure install-sh
-          ./runConfigureICU
+          ./runConfigureICU macOS
           make && make check
           sudo make install
           cd ../..
