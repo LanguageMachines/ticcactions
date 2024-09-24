@@ -15,7 +15,7 @@ runs:
           cid=$cid"cc"
         fi
         echo "compiler=$cid" >> GITHUB_OUTPUT
-    - name: install
+    - name: install gcc version
       shell: bash
       if: |
         ${{ env.action_status == '' &&
@@ -23,7 +23,10 @@ runs:
       env:
         CXX: ${{ matrix.compiler }}
       run: |
-        if [ "$RUNNER_OS" != "Linux" ]; then
+        if [ "$RUNNER_OS" == "Linux" ]
+        then
+          sudo apt-get install libicu-dev
+        else
           git clone https://github.com/unicode-org/icu.git
           cd icu/icu4c/source
           chmod +x runConfigureICU configure install-sh
@@ -31,6 +34,17 @@ runs:
           make # && make check
           sudo make install
           cd ../..
-        else
-          sudo apt-get install libicu-dev
         fi
+    - name: install clang version
+      shell: bash
+      if: |
+        ${{ env.action_status == '' &&
+        steps.compiler.outputs.compiler != 'gcc' }}
+      env:
+        CXX: ${{ matrix.compiler }}
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            sudo apt-get install libicu-dev
+          else
+            brew install icu4c
+          fi
