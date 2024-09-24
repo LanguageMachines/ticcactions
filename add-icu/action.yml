@@ -14,15 +14,15 @@ runs:
         then
           cid=$cid"cc"
         fi
-        echo "set compiler=$cid"
         echo "compiler=$cid" >> $GITHUB_OUTPUT
     - name: install gcc version
       shell: bash
-      if: ${{ env.action_status == '' && steps.compiler.outputs.compiler == 'gcc' }}
+      if: |
+        ${{ env.action_status == ''
+        && steps.compiler.outputs.compiler == 'gcc' }}
       env:
         CXX: ${{ matrix.compiler }}
       run: |
-        echo "output.compiler="${{steps.compiler.outputs.compiler}}
         if [ "$RUNNER_OS" == "Linux" ]
         then
           sudo apt-get install libicu-dev
@@ -37,11 +37,12 @@ runs:
         fi
     - name: install clang version
       shell: bash
-      if: ${{ env.action_status == '' && steps.compiler.outputs.compiler != 'gcc' }}
+      if: |
+        ${{ env.action_status == ''
+        && steps.compiler.outputs.compiler != 'gcc' }}
       env:
         CXX: ${{ matrix.compiler }}
       run: |
-        echo "outputs.compiler="${{steps.compiler.outputs.compiler}}
         if [ "$RUNNER_OS" == "Linux" ]; then
           sudo apt-get install libicu-dev
         else
