@@ -42,9 +42,9 @@ runs:
         steps.compiler.outputs.compiler != 'gcc' }}
       env:
         CXX: ${{ matrix.compiler }}
-        run: |
-          if [ "$RUNNER_OS" == "Linux" ]; then
-            sudo apt-get install libicu-dev
-          else
-            brew install icu4c
-          fi
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          sudo apt-get install libicu-dev
+        else
+          brew install icu4c
+        fi
