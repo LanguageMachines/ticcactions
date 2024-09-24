@@ -5,16 +5,26 @@ description: 'Add ICU package gcc on Linux, or install from scratch on Mac'
 runs:
   using: "composite"
   steps:
-    - name: doit
+    - name: Gnu Or Clang
+      id: compiler
       shell: bash
-      if: ${{ env.action_status == '' && matrix.compiler == 'g++-12' }}
+      run: |
+        cid=$(echo ${{matrix.compiler}} | cut -d\+ -f1)
+        if [ "$cid" == "g" ]
+        then
+          cid=$cid"cc"
+        fi
+        echo "compiler="$(cid)\n" >> GITHUB_OUTPUT
+    - name: install
+      shell: bash
+      if: |
+        ${{ env.action_status == '' &&
+        steps.compiler.outputs.compiler == 'gcc' }}
       env:
         CXX: ${{ matrix.compiler }}
       run: |
         if [ "$RUNNER_OS" != "Linux" ]; then
-          # brew uninstall icu4c
           git clone https://github.com/unicode-org/icu.git
-          ls icu/icu4c/source
           cd icu/icu4c/source
           chmod +x runConfigureICU configure install-sh
           ./runConfigureICU macOS
