@@ -21,6 +21,7 @@ runs:
                        --check-level=exhaustive \
                        --suppress=missingInclude \
                        --suppress=missingIncludeSystem \
-                       --std=c++17 --quiet --error-exitcode=0"
+                       --std=c++17 --quiet --error-exitcode=0 \
+                       -i icu/"
            fi
            echo "cpc_opts=$cpc_opts" >> $GITHUB_ENV
