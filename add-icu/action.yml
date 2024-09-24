@@ -17,9 +17,7 @@ runs:
         echo "compiler=$cid" >> $GITHUB_OUTPUT
     - name: install gcc version
       shell: bash
-      if: |
-        ${{ env.action_status == ''
-        && steps.compiler.outputs.compiler == 'gcc' }}
+      if: ${{ env.action_status == '' && steps.compiler.outputs.compiler == 'gcc' }}
       env:
         CXX: ${{ matrix.compiler }}
       run: |
@@ -37,9 +35,7 @@ runs:
         fi
     - name: install clang version
       shell: bash
-      if: |
-        ${{ env.action_status == ''
-        && steps.compiler.outputs.compiler != 'gcc' }}
+      if: ${{ env.action_status == '' && steps.compiler.outputs.compiler == 'gcc' }}
       env:
         CXX: ${{ matrix.compiler }}
       run: |
