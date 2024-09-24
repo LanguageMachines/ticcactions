@@ -15,7 +15,7 @@ runs:
           cid=$cid"cc"
         fi
         echo "set compiler=$cid"
-        echo "compiler=$cid" >> GITHUB_OUTPUT
+        echo "compiler=$cid" >> $GITHUB_OUTPUT
     - name: install gcc version
       shell: bash
       if: ${{ env.action_status == '' && steps.compiler.outputs.compiler == 'gcc' }}
