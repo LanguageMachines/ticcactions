@@ -14,7 +14,7 @@ runs:
         then
           cid=$cid"cc"
         fi
-        echo "set compiler="$cid >> $GITHUB_OUTPUT
+        echo "set compiler="$cid
         echo "compiler=$cid" >> $GITHUB_OUTPUT
     - name: install gcc version
       shell: bash
