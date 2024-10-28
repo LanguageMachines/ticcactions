@@ -20,7 +20,7 @@ runs:
       env:
         CXX: ${{ matrix.compiler }}
       run: |
-        git clone --branch $((inputs.branch}} https://github.com/LanguageMachines/${{inputs.module}}
+        git clone --branch ${{inputs.branch}} https://github.com/LanguageMachines/${{inputs.module}}
         cd ${{inputs.module}}
         bash bootstrap.sh
         ./configure
