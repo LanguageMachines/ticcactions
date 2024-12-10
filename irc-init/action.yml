@@ -7,6 +7,9 @@ inputs:
     description: who are we
     default: ${{ github.event.repository.name }}
     required: true
+  nickname:
+    description: nickname to use
+    default: GitHub
 
 runs:
   using: "composite"
@@ -16,7 +19,7 @@ runs:
       with:
         server: irc.uvt.nl
         channel: '#gitlama'
-        nickname: GitHub
+        nickname: ${{ inputs.nickname }}
         message: >
           ${{ github.actor }} started a build of ${{ inputs.module }}
           [${{ github.ref_name }}]
