@@ -18,7 +18,7 @@ runs:
       shell: bash
       if: ${{ env.action_status == '' }}
       env:
-        CXX: ${{ matrix.compiler }} -std=gnu++17
+        CXX: ${{ matrix.compiler }}
       run: |
         git clone --branch ${{inputs.branch}} https://github.com/LanguageMachines/${{inputs.module}}
         cd ${{inputs.module}}
