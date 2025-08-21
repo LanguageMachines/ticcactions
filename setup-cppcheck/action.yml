@@ -13,7 +13,7 @@ runs:
            then
              sudo apt-get install cppcheck
              cpc_opts="--enable=all --inline-suppr --force \
-                      -I include -I /usr/local/include \
+                      -I . -I include -I /usr/include -I /usr/local/include \
                       --suppress=missingIncludeSystem \
                       --std=c++17 --quiet --error-exitcode=0"
            else
