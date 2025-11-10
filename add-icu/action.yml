@@ -26,14 +26,15 @@ runs:
         then
           sudo apt-get install libicu-dev
         else
-          git clone https://github.com/unicode-org/icu.git
-          cd icu/icu4c/source
-          chmod +x runConfigureICU configure install-sh
-          ./runConfigureICU macOS
-          make # && make check
-          sudo make install
-          cd ../..
+          brew install icu4c#
         fi
+          git clone https://github.com/unicode-org/icu.git
+#          cd icu/icu4c/source
+#          chmod +x runConfigureICU configure install-sh
+#          ./runConfigureICU macOS
+#          make # && make check
+#          sudo make install
+#          cd ../..
     - name: install clang version
       shell: bash
       if: ${{ env.action_status == '' && steps.compiler.outputs.compiler != 'gcc' }}
