@@ -26,7 +26,7 @@ runs:
         then
           sudo apt-get install libicu-dev
         else
-          brew install icu4c#
+          brew install icu4c
         fi
           git clone https://github.com/unicode-org/icu.git
 #          cd icu/icu4c/source
