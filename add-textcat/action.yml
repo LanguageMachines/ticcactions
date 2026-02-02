@@ -12,7 +12,7 @@ runs:
         CXX: ${{ matrix.compiler }}
       run: |
         if [ "$RUNNER_OS" != "Linux" ]; then
-          git clone https://github.com/LibreOffice/libexttextcat/
+          git clone --depth=1 https://github.com/LibreOffice/libexttextcat/
           cd libexttextcat
           sh autogen.sh
           ./configure
